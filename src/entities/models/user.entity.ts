@@ -10,6 +10,11 @@ export class User extends CustomBaseEntity {
   @ApiModelProperty({ required: true })
   @Field()
   @Column()
+  identity!: number;
+
+  @ApiModelProperty({ required: true })
+  @Field()
+  @Column()
   name!: string;
 
   @ApiModelProperty({ required: true })
