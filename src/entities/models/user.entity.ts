@@ -5,13 +5,23 @@ import { CustomBaseEntity } from './base/base.entity';
 
 @ApiModel()
 @ObjectType()
-@Entity()
-export class Default extends CustomBaseEntity {
+@Entity({ name: 'sys_users' })
+export class User extends CustomBaseEntity {
   @ApiModelProperty({ required: true })
   @Field()
   @Column()
   name!: string;
+
+  @ApiModelProperty({ required: true })
+  @Field()
+  @Column()
+  email!: string;
+
+  @ApiModelProperty({ required: true })
+  @Field()
+  @Column()
+  phone!: string;
 }
 
 @InputType()
-export class DefaultInput implements Partial<Default> {}
+export class UserInput implements Partial<User> {}

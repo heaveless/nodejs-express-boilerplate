@@ -5,14 +5,22 @@ import {
   getDatabaseConnection,
   getIoCModule,
   getGraphqlConfiguration,
+  getMailerConnection,
 } from '@config';
 
 const runApp = async () => {
   const connection = await getDatabaseConnection();
+  const mailer = await getMailerConnection();
   const iocModule = await getIoCModule();
   const gqlServer = await getGraphqlConfiguration(container);
 
-  const app = await bootstrap(container, connection, iocModule, gqlServer);
+  const app = await bootstrap(
+    container,
+    connection,
+    mailer,
+    iocModule,
+    gqlServer
+  );
   return app;
 };
 

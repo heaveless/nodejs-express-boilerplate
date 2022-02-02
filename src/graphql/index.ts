@@ -1,1 +1,1 @@
-export { DefaultGraphql } from './default.graphql';
+export { UserGraphql } from './user.graphql';

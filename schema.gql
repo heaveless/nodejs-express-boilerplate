@@ -8,16 +8,19 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
-type Default {
+type Query {
+  queryManyUsers: [User!]
+  queryUser: User
+}
+
+type User {
   createBy: String!
   createTime: DateTime!
+  email: String!
   id: String!
   isDeleted: Boolean!
   name: String!
+  phone: String!
   updateBy: String!
   updateTime: DateTime!
-}
-
-type Query {
-  queryManyDefaults: [Default!]
 }

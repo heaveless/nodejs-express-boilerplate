@@ -1,7 +1,7 @@
-import { Default } from '@entities';
+import { User } from '@entities';
 import { Connection, ConnectionOptions, createConnection } from 'typeorm';
 
-const entities = [Default];
+const entities = [User];
 
 export const getConnectionObject = () =>
   ({

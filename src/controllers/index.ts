@@ -1,1 +1,2 @@
-export { DefaultController } from './default.controller';
+export { UserController } from './user.controller';
+export { MailerController } from './mailer.controller';

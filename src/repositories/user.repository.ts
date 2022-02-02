@@ -1,19 +1,19 @@
-import { Default } from '../entities/default.entity';
+import { User } from '@entities';
 import { Connection } from 'typeorm';
 import { provide } from 'inversify-binding-decorators';
 import { dbClient } from '@common';
 import { BaseRepository } from './base/base.repository';
 
-@provide(DefaultRepository)
-export class DefaultRepository extends BaseRepository<Default> {
+@provide(UserRepository)
+export class UserRepository extends BaseRepository<User> {
   constructor(@dbClient dbClient: Connection) {
     super(dbClient);
   }
-  public async index() {
-    return 'hello worlaaaaad!';
+  public async findById(id: string) {
+    return await this.Model.findOne(User, { where: { id } });
   }
 
   public async findAll() {
-    return await this.Model.find(Default);
+    return await this.Model.find(User);
   }
 }

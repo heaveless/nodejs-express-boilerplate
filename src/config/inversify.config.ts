@@ -1,18 +1,20 @@
 import { AsyncContainerModule, interfaces } from 'inversify';
-import { DefaultRepository } from '@repositories';
-import { DefaultService } from '@services';
-import { DefaultController } from '@controllers';
-import { DefaultGraphql } from '@graphql';
+import { UserRepository } from '@repositories';
+import { UserService, MailerService } from '@services';
+import { MailerController, UserController } from '@controllers';
+import { UserGraphql } from '@graphql';
 
 export const getIoCModule = async () =>
   new AsyncContainerModule(
     async (bind: interfaces.Bind, _: interfaces.Unbind) => {
-      bind<DefaultController>(DefaultController).to(DefaultController);
+      bind<UserController>(UserController).to(UserController);
+      bind<MailerController>(MailerController).to(MailerController);
 
-      bind<DefaultGraphql>(DefaultGraphql).to(DefaultGraphql);
+      bind<UserGraphql>(UserGraphql).to(UserGraphql);
 
-      bind<DefaultService>(DefaultService).to(DefaultService);
+      bind<UserService>(UserService).to(UserService);
+      bind<MailerService>(MailerService).to(MailerService);
 
-      bind<DefaultRepository>(DefaultRepository).to(DefaultRepository);
+      bind<UserRepository>(UserRepository).to(UserRepository);
     }
   );

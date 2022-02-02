@@ -19,10 +19,6 @@ export const swaggerSetup = async (app: express.Application) => {
           title: 'Nodejs Backend boilerplate',
           version: '1.0',
         },
-        // externalDocs: {
-        //   url: 'My url',
-        // },
-        // Models can be defined here
       },
     })
   );

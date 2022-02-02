@@ -19,7 +19,7 @@ if (options.s) {
   const databaseConnection = getConnectionObject();
   const seedConnection = {
     ...databaseConnection,
-    entities: ['src/entities/*.ts'],
+    entities: ['src/entities/models/*.ts'],
     seeds: ['src/orm/seeds/**/*.ts'],
     factories: ['src/orm/factories/**/*.ts'],
   };
@@ -27,8 +27,15 @@ if (options.s) {
 
   if (!fs.existsSync(basePath)) {
     fs.writeFileSync(basePath, jsonStr, 'utf-8');
-    exec('npm run db:seed');
-  }
+    exec('yarn db:seed', (error: any, stdout: string, stderr: string) => {
+      if (!error) {
+        console.log(`🌱 seeding ✔ ${stdout}`);
+        console.log(`🌱 seeding ✘ ${stderr}`);
 
-  if (fs.existsSync(basePath)) fs.unlinkSync(basePath);
+        if (fs.existsSync(basePath)) fs.unlinkSync(basePath);
+        return;
+      }
+      console.error(`🌱 seeding ❌: ${error}`);
+    });
+  }
 }

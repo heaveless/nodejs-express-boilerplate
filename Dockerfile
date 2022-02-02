@@ -6,6 +6,6 @@ COPY package.json yarn.lock tsconfig.json ./
 COPY ./src ./src
 
 RUN rm -rf node_modules && yarn install --frozen-lockfile && yarn cache clean
-RUN npm run build
+RUN yarn build
 
-CMD ["node", "./dist/server.js"]
+CMD yarn orm:seed;node ./dist/server.js;

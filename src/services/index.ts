@@ -1,1 +1,2 @@
-export { DefaultService } from './default.service';
+export { UserService } from './user.service';
+export { MailerService } from './mailer.service';
