@@ -8,4 +8,4 @@ COPY ./src ./src
 RUN rm -rf node_modules && yarn install --frozen-lockfile && yarn cache clean
 RUN yarn build
 
-CMD yarn orm:seed;node ./dist/server.js;
+CMD node ./dist/server.js;

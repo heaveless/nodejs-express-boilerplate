@@ -1,29 +1,17 @@
-version: '3'
-
+version: '3.2'
 services:
-  app:
-    container_name: app
-    image: app
+  nodejs-express-boilerplate:
+    image: experimentallife/nodejs-express-boilerplate
     restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
-      - '${PORT}:${PORT}'
-    env_file:
-      - docker/postgres/postgres.env
-      - .env
+      - '4000:4000'
     networks:
-      base-network:
-        ipv4_address: 172.16.0.4
-    depends_on:
-      - postgres
-      - pgadmin
+      nodejs-express-boilerplate-network:
+        ipv4_address: 192.168.1.2
 
 networks:
-  base-network:
+  nodejs-express-boilerplate-network:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.16.0.0/16
-          gateway: 172.16.0.1
+        - subnet: 192.168.1.0/28
