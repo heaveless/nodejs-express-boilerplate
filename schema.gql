@@ -3,24 +3,42 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-"""
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
-"""
-scalar DateTime
+type Mutation {
+  createTodo(payload: TodoDto!): Todo
+  createUser(payload: UserDto!): User
+  deleteTodo(id: String!): Todo
+  deleteUser(id: String!): User
+  updateTodo(payload: TodoDto!): Todo
+  updateUser(payload: UserDto!): User
+}
 
 type Query {
+  queryManyTodos: [Todo!]
   queryManyUsers: [User!]
-  queryUser: User
+  queryTodo(id: String!): Todo
+  queryUser(id: String!): User
+}
+
+type Todo {
+  autor: String!
+  isComplete: Boolean!
+  name: String!
+}
+
+input TodoDto {
+  autor: String!
+  isComplete: Boolean!
+  name: String!
 }
 
 type User {
-  createBy: String!
-  createTime: DateTime!
-  email: String!
-  id: String!
-  isDeleted: Boolean!
-  name: String!
-  phone: String!
-  updateBy: String!
-  updateTime: DateTime!
+  admin: Boolean!
+  password: String!
+  username: String!
+}
+
+input UserDto {
+  admin: Boolean!
+  password: String!
+  username: String!
 }

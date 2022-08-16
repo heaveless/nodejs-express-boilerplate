@@ -1,21 +1,29 @@
 import { inject } from 'inversify';
 import { provide } from 'inversify-binding-decorators';
 import { UserRepository } from '@repositories';
-import { FindUserQuery } from '@entities';
+import { User, UserDto } from '@entities';
 
 @provide(UserService)
 export class UserService {
   constructor(@inject(UserRepository) private userRepository: UserRepository) {}
 
-  public async getById(id: string) {
-    return await this.userRepository.findById(id);
+  public async getOne(id: string) {
+    return await this.userRepository.getOne(id);
   }
 
-  public async getAll() {
-    return await this.userRepository.findAll();
+  public async getMany() {
+    return await this.userRepository.getMany();
   }
 
-  public async getOne(findUserQuery: FindUserQuery) {
-    return await this.userRepository.findAny(findUserQuery);
+  public async create(dto: UserDto) {
+    return await this.userRepository.createOne(dto as any as User);
+  }
+
+  public async update(dto: UserDto) {
+    return await this.userRepository.createOne(dto as any as User);
+  }
+
+  public async delete(id: string) {
+    return await this.userRepository.delete(id);
   }
 }

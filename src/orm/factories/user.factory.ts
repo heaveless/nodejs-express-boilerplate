@@ -10,14 +10,12 @@ define(User, (faker: typeof Faker) => {
   const lastname = faker.name.lastName();
 
   user.id = uuidv4();
-  user.identity = Math.floor(
-    Math.random() * (10000000 - 99999999 + 1) + 99999999
-  );
-  user.name = `${firstname} ${lastname}`;
-  user.email = `${firstname
+  user.username = `${firstname
     .substring(0, 1)
     .concat(lastname)}@experimentalife.dev`.toLowerCase();
-  user.phone = faker.phone.phoneNumber('+51#########');
+  user.password = Math.floor(
+    Math.random() * (10000000 - 99999999 + 1) + 99999999
+  ).toString();
   user.createBy = faker.name.firstName();
   user.createTime = faker.date.recent();
   user.isDeleted = false;

@@ -1,3 +1,3 @@
-export { User } from './models/user.entity';
-export { SendMailQuery } from './queries/sendmail.query';
-export { FindUserQuery } from './queries/finduser.query';
+export { EmailDto } from './email.entity';
+export { User, UserDto } from './user.entity';
+export { Todo, TodoDto } from './todo.entity';

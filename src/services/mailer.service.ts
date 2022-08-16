@@ -1,5 +1,5 @@
 import { IEnvironment } from '@config';
-import { SendMailQuery } from '@entities';
+import { EmailDto } from '@entities';
 import { provide } from 'inversify-binding-decorators';
 import { Transporter } from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
@@ -13,12 +13,12 @@ export class MailerService {
     @environment private env: IEnvironment
   ) {}
 
-  public async send(sendMailQuery: SendMailQuery) {
+  public async send(dto: EmailDto) {
     const payload = {
       from: this.env.MAILER_USERNAME,
-      to: sendMailQuery.to,
-      subject: sendMailQuery.subject,
-      html: sendMailQuery.body,
+      to: dto.to,
+      subject: dto.subject,
+      html: dto.body,
     };
     return await this.mailerClient.sendMail(payload);
   }

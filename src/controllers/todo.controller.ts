@@ -10,7 +10,7 @@ import {
   httpPut,
   httpDelete,
 } from 'inversify-express-utils';
-import { UserService } from '@services';
+import { TodoService } from '@services';
 import {
   ApiOperationDelete,
   ApiOperationGet,
@@ -19,14 +19,14 @@ import {
   ApiPath,
   SwaggerDefinitionConstant,
 } from 'swagger-express-ts';
-import { UserDto } from '@entities';
+import { TodoDto } from '@entities';
 
-@ApiPath({ path: '/users', name: 'User' })
-@controller('/users')
-export class UserController {
+@ApiPath({ path: '/todos', name: 'Todo' })
+@controller('/todos')
+export class TodoController {
   constructor(
-    @inject(UserService)
-    private userService: UserService
+    @inject(TodoService)
+    private todoService: TodoService
   ) {}
 
   @ApiOperationGet({
@@ -35,7 +35,7 @@ export class UserController {
       200: {
         description: 'Success',
         type: SwaggerDefinitionConstant.Response.Type.OBJECT,
-        model: 'User',
+        model: 'Todo',
       },
     },
   })
@@ -45,7 +45,7 @@ export class UserController {
     @response() res: Response
   ) {
     try {
-      return await this.userService.getOne(id);
+      return await this.todoService.getOne(id);
     } catch (e: any) {
       res.status(500);
       res.send(e.message);
@@ -58,14 +58,14 @@ export class UserController {
       200: {
         description: 'Success',
         type: SwaggerDefinitionConstant.Response.Type.ARRAY,
-        model: 'User',
+        model: 'Todo',
       },
     },
   })
   @httpGet('/')
   public async getMany(@response() res: Response) {
     try {
-      return await this.userService.getMany();
+      return await this.todoService.getMany();
     } catch (e: any) {
       res.status(500);
       res.send(e.message);
@@ -77,21 +77,21 @@ export class UserController {
     parameters: {
       body: {
         required: true,
-        model: 'UserDto',
+        model: 'TodoDto',
       },
     },
     responses: {
       200: {
         description: 'Success',
         type: SwaggerDefinitionConstant.Response.Type.OBJECT,
-        model: 'User',
+        model: 'Todo',
       },
     },
   })
   @httpPost('/')
-  public async create(@requestBody() req: UserDto, @response() res: Response) {
+  public async create(@requestBody() req: TodoDto, @response() res: Response) {
     try {
-      return await this.userService.create(req);
+      return await this.todoService.create(req);
     } catch (e: any) {
       res.status(500);
       res.send(e.message);
@@ -103,21 +103,21 @@ export class UserController {
     parameters: {
       body: {
         required: true,
-        model: 'UserDto',
+        model: 'TodoDto',
       },
     },
     responses: {
       200: {
         description: 'Success',
         type: SwaggerDefinitionConstant.Response.Type.OBJECT,
-        model: 'User',
+        model: 'Todo',
       },
     },
   })
   @httpPut('/')
-  public async update(@requestBody() req: UserDto, @response() res: Response) {
+  public async update(@requestBody() req: TodoDto, @response() res: Response) {
     try {
-      return await this.userService.update(req);
+      return await this.todoService.update(req);
     } catch (e: any) {
       res.status(500);
       res.send(e.message);
@@ -131,7 +131,7 @@ export class UserController {
       200: {
         description: 'Success',
         type: SwaggerDefinitionConstant.Response.Type.OBJECT,
-        model: 'User',
+        model: 'Todo',
       },
     },
   })
@@ -141,7 +141,7 @@ export class UserController {
     @response() res: Response
   ) {
     try {
-      return await this.userService.delete(id);
+      return await this.todoService.delete(id);
     } catch (e: any) {
       res.status(500);
       res.send(e.message);
