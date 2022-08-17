@@ -1,9 +1,11 @@
 export interface IEnvironment {
   PORT: number;
   MAILER_USERNAME: string;
+  MAILER_PASSWORD: string;
 }
 
 export const Environment: IEnvironment = {
-  PORT: Number(process.env.PORT) || 3000,
-  MAILER_USERNAME: process.env.MAILER_USERNAME || '',
+  PORT: Number(process.env.PORT),
+  MAILER_USERNAME: process.env.MAILER_USERNAME as string,
+  MAILER_PASSWORD: process.env.MAILER_PASSWORD as string,
 };

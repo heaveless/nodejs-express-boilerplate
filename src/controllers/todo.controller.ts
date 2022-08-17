@@ -20,6 +20,7 @@ import {
   SwaggerDefinitionConstant,
 } from 'swagger-express-ts';
 import { TodoDto } from '@entities';
+import { authMiddleware } from '@common';
 
 @ApiPath({ path: '/todos', name: 'Todo' })
 @controller('/todos')
@@ -62,7 +63,7 @@ export class TodoController {
       },
     },
   })
-  @httpGet('/')
+  @httpGet('/', authMiddleware({ role: 'ALL' }))
   public async getMany(@response() res: Response) {
     try {
       return await this.todoService.getMany();

@@ -2,15 +2,18 @@ import { inject } from 'inversify';
 import { provide } from 'inversify-binding-decorators';
 import { TodoRepository } from '@repositories';
 import { Todo, TodoDto } from '@entities';
+import { redisCaching, RedisKey } from '@common';
 
 @provide(TodoService)
 export class TodoService {
   constructor(@inject(TodoRepository) private TodoRepository: TodoRepository) {}
 
+  @redisCaching(30, RedisKey.TodoGetOne)
   public async getOne(id: string) {
     return await this.TodoRepository.getOne(id);
   }
 
+  @redisCaching(30, RedisKey.TodoGetMany)
   public async getMany() {
     return await this.TodoRepository.getMany();
   }

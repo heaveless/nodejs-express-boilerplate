@@ -1,8 +1,7 @@
-import { createTransport, Transporter } from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import { createTransport } from 'nodemailer';
 
-export const getMailerConnection = async () => {
-  const mailerConnection = {
+export const mailerSetup = async () => {
+  const configure = {
     service: process.env.MAILER_SERVICE,
     auth: {
       user: process.env.MAILER_USERNAME,
@@ -10,7 +9,5 @@ export const getMailerConnection = async () => {
     },
   };
 
-  const connection: Transporter<SMTPTransport.SentMessageInfo> =
-    createTransport(mailerConnection);
-  return connection;
+  return createTransport(configure);
 };

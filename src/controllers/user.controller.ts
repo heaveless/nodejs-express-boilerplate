@@ -20,6 +20,7 @@ import {
   SwaggerDefinitionConstant,
 } from 'swagger-express-ts';
 import { UserDto } from '@entities';
+import { auth, authMiddleware } from '@common';
 
 @ApiPath({ path: '/users', name: 'User' })
 @controller('/users')
@@ -62,7 +63,7 @@ export class UserController {
       },
     },
   })
-  @httpGet('/')
+  @httpGet('/', authMiddleware({ role: 'ALL' }))
   public async getMany(@response() res: Response) {
     try {
       return await this.userService.getMany();

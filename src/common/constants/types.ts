@@ -1,6 +1,4 @@
-export const TYPES = {
-  App: Symbol('App'),
-  Environment: Symbol('Environment'),
-  DbClient: Symbol('DbClient'),
-  MailerClient: Symbol('MailerClient'),
-};
+import { Transporter } from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
+
+export type MailerType = Transporter<SMTPTransport.SentMessageInfo>;

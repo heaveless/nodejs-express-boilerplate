@@ -1,27 +1,13 @@
 import 'reflect-metadata';
 import { container } from '@common';
 import { bootstrap } from './bootstrap';
-import {
-  getDatabaseConnection,
-  getIoCModule,
-  getGraphqlConfiguration,
-  getMailerConnection,
-} from '@config';
+import { inversifySetup, graphqlSetup } from '@config';
 
 const runApp = async () => {
-  const connection = await getDatabaseConnection();
-  const mailer = await getMailerConnection();
-  const iocModule = await getIoCModule();
-  const gqlServer = await getGraphqlConfiguration(container);
+  const module = await inversifySetup();
+  const graphql = await graphqlSetup(container);
 
-  const app = await bootstrap(
-    container,
-    connection,
-    mailer,
-    iocModule,
-    gqlServer
-  );
-  return app;
+  await bootstrap(container, module, graphql);
 };
 
 runApp();

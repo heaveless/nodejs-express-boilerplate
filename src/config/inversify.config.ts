@@ -3,10 +3,17 @@ import { TodoRepository, UserRepository } from '@repositories';
 import { UserService, MailerService, TodoService } from '@services';
 import { TodoController, UserController } from '@controllers';
 import { TodoGraphql, UserGraphql } from '@graphql';
+import { Connection } from 'typeorm';
+import { MailerType, TYPES } from '@common';
+import { Environment, databaseSetup, mailerSetup, IEnvironment } from '@config';
 
-export const getIoCModule = async () =>
+export const inversifySetup = async () =>
   new AsyncContainerModule(
     async (bind: interfaces.Bind, _: interfaces.Unbind) => {
+      bind<IEnvironment>(TYPES.Environment).toConstantValue(Environment);
+      bind<Connection>(TYPES.DbClient).toConstantValue(await databaseSetup());
+      bind<MailerType>(TYPES.MailerClient).toConstantValue(await mailerSetup());
+
       bind<UserController>(UserController).to(UserController);
       bind<TodoController>(TodoController).to(TodoController);
 

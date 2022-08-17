@@ -1,7 +1,6 @@
-export { TYPES } from './constants/types';
-export {
-  dbClient,
-  mailerClient,
-  environment,
-} from './decorators/client.decorator';
-export { container } from './ioc/ioc_container';
+export * from './decorators';
+export * from './constants';
+export * from './middlewares';
+export * from './models';
+export * from './providers';
+export { container } from './ioc/ioc-container';

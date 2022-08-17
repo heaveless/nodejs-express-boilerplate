@@ -1,10 +1,8 @@
 import { Todo, User } from '@entities';
-import { Connection, ConnectionOptions, createConnection } from 'typeorm';
+import { ConnectionOptions, createConnection } from 'typeorm';
 
-const entities = [Todo, User];
-
-export const getConnectionObject = () =>
-  ({
+export const databaseSetup = async () => {
+  const configure = {
     type: process.env.DATABASE_TYPE,
     host: process.env.DATABASE_HOST,
     port: Number(process.env.DATABASE_PORT),
@@ -12,12 +10,8 @@ export const getConnectionObject = () =>
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     synchronize: true,
-    entities,
-  } as ConnectionOptions);
+    entities: [Todo, User],
+  } as ConnectionOptions;
 
-export const getDatabaseConnection = async () => {
-  const databaseConnection = getConnectionObject();
-
-  const connection: Connection = await createConnection(databaseConnection);
-  return connection;
+  return createConnection(configure);
 };

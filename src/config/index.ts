@@ -1,7 +1,7 @@
-export { getConnectionObject, getDatabaseConnection } from './database.config';
-export { getIoCModule } from './inversify.config';
-export { getGraphqlConfiguration } from './graphql.config';
-export { getMailerConnection } from './mailer.config';
+export { databaseSetup } from './database.config';
+export { mailerSetup } from './mailer.config';
+export { inversifySetup } from './inversify.config';
+export { graphqlSetup } from './graphql.config';
 export { expressSetup } from './express.config';
 export { swaggerSetup } from './swagger.config';
 

@@ -32,7 +32,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^10.4.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^4.5.5"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "apollo-server-express": "^3.6.2",
@@ -47,9 +47,13 @@
     "inversify-express-utils": "^6.4.3",
     "inversify-inject-decorators": "^3.1.0",
     "inversify-logger-middleware": "^3.1.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "nodemailer": "^6.7.2",
+    "npm": "^8.17.0",
     "pg": "^8.7.1",
+    "redis": "^4.2.0",
+    "redis-om": "^0.3.6",
     "reflect-metadata": "^0.1.13",
     "swagger-express-ts": "^1.1.0",
     "swagger-ui-dist": "^4.2.1",

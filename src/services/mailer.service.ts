@@ -1,15 +1,13 @@
 import { IEnvironment } from '@config';
 import { EmailDto } from '@entities';
 import { provide } from 'inversify-binding-decorators';
-import { Transporter } from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import { environment, mailerClient } from '@common';
+import { environment, mailerClient, MailerType } from '@common';
 
 @provide(MailerService)
 export class MailerService {
   constructor(
     @mailerClient
-    private mailerClient: Transporter<SMTPTransport.SentMessageInfo>,
+    private mailerClient: MailerType,
     @environment private env: IEnvironment
   ) {}
 
