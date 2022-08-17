@@ -8,7 +8,8 @@ export class MailerService {
   constructor(
     @mailerClient
     private mailerClient: MailerType,
-    @environment private env: IEnvironment
+    @environment
+    private env: IEnvironment
   ) {}
 
   public async send(dto: EmailDto) {

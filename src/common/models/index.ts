@@ -1,1 +1,1 @@
-export { Profile } from './profile.model';
+export { Profile, IProfileDetails, IData } from './profile.model';

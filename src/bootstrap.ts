@@ -4,7 +4,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import { AuthProvider, TYPES } from '@common';
 import { Application } from 'express';
 import { ApolloServer, ExpressContext } from 'apollo-server-express';
-import { Environment as Env, expressSetup, swaggerSetup } from '@config';
+import { Global, expressSetup, swaggerSetup } from '@config';
 
 export const bootstrap = async (
   container: Container,
@@ -31,8 +31,8 @@ export const bootstrap = async (
 
     graphql.applyMiddleware({ app });
 
-    app.listen(Env.PORT, () =>
-      console.log(`server is running! => http://localhost:${Env.PORT}`)
+    app.listen(Global.PORT, () =>
+      console.log(`server is running! => http://localhost:${Global.PORT}`)
     );
 
     container.bind<Application>(TYPES.App).toConstantValue(app);

@@ -1,13 +1,29 @@
 import { Principal } from 'inversify-express-utils';
 
+export interface IData {
+  info: {
+    [key: string]: string;
+  };
+  roles: string[];
+}
+export interface IProfileDetails {
+  data: IData;
+  success: boolean;
+  message?: unknown;
+}
+
 export class Profile implements Principal {
-  public details: unknown;
-  constructor(details: unknown) {
+  public details: IProfileDetails;
+  constructor(details: IProfileDetails) {
     this.details = details;
   }
 
+  public getPayload() {
+    return this.details.data;
+  }
+
   public isAuthenticated() {
-    return Promise.resolve<boolean>(true);
+    return Promise.resolve<boolean>(this.details.success);
   }
 
   public isResourceOwner(resourceId: unknown) {
@@ -15,6 +31,7 @@ export class Profile implements Principal {
   }
 
   public isInRole(role: string) {
-    return Promise.resolve<boolean>(role === 'admin');
+    const data = this.details.data;
+    return Promise.resolve<boolean>(data.roles.includes(role));
   }
 }

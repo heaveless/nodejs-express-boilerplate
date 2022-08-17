@@ -1,11 +1,14 @@
+export const Global = {
+  PORT: Number(process.env.PORT),
+  SECURITY_SECRET_KEY: process.env.SECURITY_SECRET_KEY as string,
+};
+
 export interface IEnvironment {
-  PORT: number;
   MAILER_USERNAME: string;
-  MAILER_PASSWORD: string;
+  SECURITY_SECRET_KEY: string;
 }
 
 export const Environment: IEnvironment = {
-  PORT: Number(process.env.PORT),
   MAILER_USERNAME: process.env.MAILER_USERNAME as string,
-  MAILER_PASSWORD: process.env.MAILER_PASSWORD as string,
+  SECURITY_SECRET_KEY: Global.SECURITY_SECRET_KEY,
 };

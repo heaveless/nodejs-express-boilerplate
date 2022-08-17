@@ -5,4 +5,4 @@ export { graphqlSetup } from './graphql.config';
 export { expressSetup } from './express.config';
 export { swaggerSetup } from './swagger.config';
 
-export { Environment, IEnvironment } from './environment.config';
+export { Environment, IEnvironment, Global } from './environment.config';
