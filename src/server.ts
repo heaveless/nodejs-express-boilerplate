@@ -4,7 +4,9 @@ import { bootstrap } from './bootstrap';
 import { inversifySetup, graphqlSetup } from '@config';
 import { configServer } from './config-server';
 
-const before = async () => configServer();
+const before = async () => {
+  configServer();
+};
 
 const now = async () => {
   const module = await inversifySetup();

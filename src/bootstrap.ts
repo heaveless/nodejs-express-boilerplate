@@ -22,9 +22,9 @@ export const bootstrap = async (
       AuthProvider
     );
 
-    server.setConfig((app: Application) => {
-      expressSetup(app), swaggerSetup(app);
-    });
+    server.setConfig(
+      (app: Application) => (expressSetup(app), swaggerSetup(app))
+    );
 
     const app = server.build();
     await graphql.start();

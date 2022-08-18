@@ -19,7 +19,7 @@ export class AuthProvider implements interfaces.AuthProvider {
       success: false,
     };
 
-    jwt.verify(token, Global.SECURITY_SECRET_KEY, (err, decoded) => {
+    jwt.verify(token, Global.SECURITY_PRIVATE_KEY, (err, decoded) => {
       if (err) return new Profile(_.assign(payload, { message: err.message }));
       _.assign(payload, { data: decoded, success: true });
     });

@@ -41,7 +41,8 @@ export class AuthController {
       console.log(cipher);
       const token = jwt.sign(
         { foo: 'bar', roles: ['ALL'] },
-        this.env.SECURITY_SECRET_KEY
+        this.env.SECURITY_PRIVATE_KEY,
+        { algorithm: 'RS512' }
       );
       return { token };
     } catch (e: any) {
