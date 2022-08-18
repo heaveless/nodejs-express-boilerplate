@@ -2,6 +2,7 @@ import path from 'path';
 
 import * as express from 'express';
 import * as swagger from 'swagger-express-ts';
+import metadata from './metadata.json';
 
 export const swaggerSetup = async (app: express.Application) => {
   app.use(
@@ -16,8 +17,15 @@ export const swaggerSetup = async (app: express.Application) => {
     swagger.express({
       definition: {
         info: {
-          title: 'Nodejs Backend boilerplate',
-          version: '1.0',
+          title: metadata.title,
+          version: metadata.version,
+        },
+        securityDefinitions: {
+          Authorization: {
+            type: 'apiKey',
+            name: 'authorization',
+            in: 'header',
+          },
         },
       },
     })

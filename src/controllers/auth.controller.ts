@@ -34,10 +34,11 @@ export class AuthController {
   })
   @httpGet('/')
   public async login(
-    @requestHeaders('authorization') authorization: string,
+    @requestHeaders('cipher') cipher: string,
     @response() res: Response
   ) {
     try {
+      console.log(cipher);
       const token = jwt.sign(
         { foo: 'bar', roles: ['ALL'] },
         this.env.SECURITY_SECRET_KEY

@@ -20,9 +20,9 @@ import {
   SwaggerDefinitionConstant,
 } from 'swagger-express-ts';
 import { UserDto } from '@entities';
-import { auth, authMiddleware } from '@common';
+import { authMiddleware } from '@common';
 
-@ApiPath({ path: '/users', name: 'User' })
+@ApiPath({ path: '/users', name: 'User', security: { basicAuth: [] } })
 @controller('/users')
 export class UserController {
   constructor(

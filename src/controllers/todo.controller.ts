@@ -22,7 +22,7 @@ import {
 import { TodoDto } from '@entities';
 import { authMiddleware } from '@common';
 
-@ApiPath({ path: '/todos', name: 'Todo' })
+@ApiPath({ path: '/todos', name: 'Todo', security: { basicAuth: [] } })
 @controller('/todos')
 export class TodoController {
   constructor(

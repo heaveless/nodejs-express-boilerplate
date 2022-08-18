@@ -1,0 +1,30 @@
+{
+  "title": "Nodejs Express boilerplate",
+  "version": "1.0'",
+  "server": [
+    {
+      "key": "DATABASE_TYPE",
+      "ref": "properties.database.type"
+    },
+    {
+      "key": "DATABASE_HOST",
+      "ref": "properties.database.host"
+    },
+    {
+      "key": "DATABASE_PORT",
+      "ref": "properties.database.port"
+    },
+    {
+      "key": "POSTGRES_USER",
+      "ref": "properties.postgres.user"
+    },
+    {
+      "key": "POSTGRES_PASSWORD",
+      "ref": "properties.postgres.password"
+    },
+    {
+      "key": "POSTGRES_DB",
+      "ref": "properties.postgres.db"
+    }
+  ]
+}
