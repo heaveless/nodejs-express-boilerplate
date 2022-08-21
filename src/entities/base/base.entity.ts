@@ -1,7 +1,9 @@
+import { injectable } from 'inversify';
 import { Column, Entity, BaseEntity, PrimaryGeneratedColumn } from 'typeorm';
 
+@injectable()
 @Entity()
-export class RootEntity extends BaseEntity {
+export class RootEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 

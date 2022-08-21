@@ -1,17 +1,25 @@
-import { Todo, User } from '@entities';
-import { ConnectionOptions, createConnection } from 'typeorm';
+import { Todo } from '@entities';
+import {
+  DatabaseModule,
+  DatabaseOptions,
+  DatabaseOptionsFactory,
+} from '@experimentallife/database';
 
-export const databaseSetup = async () => {
-  const configure = {
-    type: process.env.DATABASE_TYPE,
-    host: process.env.DATABASE_HOST,
-    port: Number(process.env.DATABASE_PORT),
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    synchronize: true,
-    entities: [Todo, User],
-  } as ConnectionOptions;
+class DatabaseConfiguration implements DatabaseOptionsFactory {
+  async createDatabaseOptions(): Promise<DatabaseOptions> {
+    return Promise.resolve({
+      type: 'postgres',
+      host: '192.168.0.2',
+      port: 5432,
+      username: 'admin',
+      password: 'adminpassword',
+      database: 'project_database',
+      synchronize: true,
+    });
+  }
+}
 
-  return createConnection(configure);
-};
+export const DatabaseConfigModule = DatabaseModule.registerAsync({
+  useClass: DatabaseConfiguration,
+  useEntities: [Todo],
+});

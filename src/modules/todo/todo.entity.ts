@@ -1,13 +1,10 @@
-import { injectable } from 'inversify';
 import { ApiModel, ApiModelProperty } from 'swagger-express-ts';
 import { Field, InputType, ObjectType } from 'type-graphql';
 import { Column, Entity } from 'typeorm';
-import { RootEntity } from './base/base.entity';
 
-@injectable()
 @ObjectType()
 @Entity({ name: 'sys_todos' })
-export class Todo extends RootEntity {
+export class Todo {
   @Field()
   @Column()
   name!: string;

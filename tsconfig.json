@@ -18,6 +18,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "paths": {
+      "@experimentallife/common": ["lib/common"],
+      "@experimentallife/config": ["lib/config"],
+      "@experimentallife/database": ["lib/database"],
+
       "@common": ["src/common"],
       "@config": ["src/config"],
       "@controllers": ["src/controllers"],
@@ -28,6 +32,6 @@
       "@services": ["src/services"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "lib/**/*"],
   "exclude": ["node_modules"]
 }

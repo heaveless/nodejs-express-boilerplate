@@ -1,0 +1,2 @@
+export const DATABASE_INSTANCE_TOKEN = Symbol.for('DATABASE_INSTANCE');
+export const DATABASE_ENTITY_TOKEN = Symbol.for('DATABASE_ENTITY');
